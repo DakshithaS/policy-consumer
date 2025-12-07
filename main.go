@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	ratelimiter "github.com/DakshithaS/test-policy-hub/policy-catalog/policies/rate-limiter/v1.0.0"
+	ratelimiter "github.com/DakshithaS/test-policy-hub/rate-limiter/v1.0.0"
 )
 
 func main() {
