@@ -2,17 +2,19 @@ package main
 
 import (
 	"fmt"
-	"time"
 
-	ratelimiter "github.com/DakshithaS/test-policy-hub/rate-limiter/v1.0.0"
+	jwtvalidator "github.com/DakshithaS/test-policy-hub/jwt-validator/v2.1.0"
 )
 
 func main() {
-	rl := ratelimiter.NewRateLimiter(10, time.Minute)
-	fmt.Println("Rate limiter created")
-	if rl.Allow() {
-		fmt.Println("Request allowed")
+	validator := jwtvalidator.New("secret")
+	fmt.Println("JWT validator created")
+	valid, err := validator.ValidateWithContext(nil, "some.token.here")
+	if err != nil {
+		fmt.Println("Error:", err)
+	} else if valid {
+		fmt.Println("Token is valid")
 	} else {
-		fmt.Println("Request denied")
+		fmt.Println("Token is invalid")
 	}
 }
